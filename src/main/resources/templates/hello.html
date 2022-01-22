@@ -8,7 +8,7 @@
 <div>
     <form th:action="@{/logout}" method="post">
         <p>
-            Welcome
+            Welcome  <b>[[${#request.userPrincipal.principal.getUsername}]]</b>
         </p>
         <input type="submit" value="Sign Out" />
     </form>

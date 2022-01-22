@@ -1,9 +1,8 @@
 package com.example.databaseTest;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 @Entity
 @Table(name="users")
@@ -16,6 +15,9 @@ public class User {
 
     @Column(nullable = false)
     private String description;
+
+//    @OneToMany(mappedBy = "users")
+//    private HashSet<Logging> loggings = new HashSet<>();
 
     public User(String username, String password, String description) {
         this.username = username;
