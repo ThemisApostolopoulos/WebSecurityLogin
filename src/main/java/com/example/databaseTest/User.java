@@ -2,6 +2,7 @@ package com.example.databaseTest;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 @Entity
@@ -16,13 +17,33 @@ public class User {
     @Column(nullable = false)
     private String description;
 
+    @Column
+    private int failedAttempts;
+
+    @Column
+    private boolean accountLocked;
+
+    @Column
+    private Date lockTime;
+
 //    @OneToMany(mappedBy = "users")
 //    private HashSet<Logging> loggings = new HashSet<>();
 
-    public User(String username, String password, String description) {
+    public User(String username, String password, String description, int failedAttempts, boolean accountLocked) {
         this.username = username;
         this.password = password;
         this.description = description;
+        this.failedAttempts = failedAttempts;
+        this.accountLocked = accountLocked;
+
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.description ="user";
+        this.failedAttempts = 0;
+        this.accountLocked = false;
     }
 
     public User() {
@@ -51,5 +72,29 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getFailedAttempts() {
+        return failedAttempts;
+    }
+
+    public void setFailedAttempts(int failedAttempts) {
+        this.failedAttempts = failedAttempts;
+    }
+
+    public boolean isAccountLocked() {
+        return accountLocked;
+    }
+
+    public void setAccountLocked(boolean accountLocked) {
+        this.accountLocked = accountLocked;
+    }
+
+    public Date getLockTime() {
+        return lockTime;
+    }
+
+    public void setLockTime(Date lockTime) {
+        this.lockTime = lockTime;
     }
 }

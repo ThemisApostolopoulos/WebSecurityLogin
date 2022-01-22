@@ -18,7 +18,7 @@ public class DatabaseTestApplication {
 		return args -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String encodedPassword = passwordEncoder.encode("3180013");
-			User user1 = new User("3180013", encodedPassword, "student");
+			User user1 = new User("3180013", encodedPassword, "student",0, false);
 			userRepository.save(user1);
 		};
 	}
