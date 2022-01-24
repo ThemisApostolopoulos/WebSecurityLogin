@@ -10,6 +10,9 @@
         <p>
             Welcome  <b>[[${#request.userPrincipal.principal.getUsername}]]</b>
         </p>
+        <div th:if="${param.error}">
+            <p>Please change your password.</p>
+        </div>
         <input type="submit" value="Sign Out" />
     </form>
 </div>

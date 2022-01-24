@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 
+@Service
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepo;
@@ -25,7 +29,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public void increaseFailedAttempts(User user) {
         int newFailAttempts = user.getFailedAttempts() + 1;
-        userRepo.updateFailedAttempts(user.getUsername(),newFailAttempts);
+        user.setFailedAttempts(newFailAttempts);
+        userRepo.save(user);
+        //userRepo.updateFailedAttempts(user.getUsername(),newFailAttempts);
     }
 
     public void resetFailedAttempts(User user){

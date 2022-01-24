@@ -26,15 +26,19 @@ public class User {
     @Column
     private Date lockTime;
 
+    @Column
+    private Date passwordSet;
+
 //    @OneToMany(mappedBy = "users")
 //    private HashSet<Logging> loggings = new HashSet<>();
 
-    public User(String username, String password, String description, int failedAttempts, boolean accountLocked) {
+    public User(String username, String password, String description, int failedAttempts, boolean accountLocked,Date passwordSet) {
         this.username = username;
         this.password = password;
         this.description = description;
         this.failedAttempts = failedAttempts;
         this.accountLocked = accountLocked;
+        this.passwordSet = passwordSet;
 
     }
 
@@ -96,5 +100,13 @@ public class User {
 
     public void setLockTime(Date lockTime) {
         this.lockTime = lockTime;
+    }
+
+    public Date getPasswordSet() {
+        return passwordSet;
+    }
+
+    public void setPasswordSet(Date passwordSet) {
+        this.passwordSet = passwordSet;
     }
 }

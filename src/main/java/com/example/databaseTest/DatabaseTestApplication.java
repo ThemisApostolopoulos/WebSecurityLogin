@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Date;
+
 @SpringBootApplication
 public class DatabaseTestApplication {
 
@@ -18,7 +20,7 @@ public class DatabaseTestApplication {
 		return args -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String encodedPassword = passwordEncoder.encode("3180013");
-			User user1 = new User("3180013", encodedPassword, "student",0, false);
+			User user1 = new User("3180013", encodedPassword, "student",0, false, new Date());
 			userRepository.save(user1);
 		};
 	}
