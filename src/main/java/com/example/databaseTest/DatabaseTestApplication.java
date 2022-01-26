@@ -20,8 +20,11 @@ public class DatabaseTestApplication {
 		return args -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String encodedPassword = passwordEncoder.encode("3180013");
+			String encodedPassword2 = passwordEncoder.encode("admin");
 			User user1 = new User("3180013", encodedPassword, "student",0, false, new Date());
+			User user2 = new User("admin", encodedPassword2,"teacher",0,false,new Date());
 			userRepository.save(user1);
+			userRepository.save(user2);
 		};
 	}
 }
